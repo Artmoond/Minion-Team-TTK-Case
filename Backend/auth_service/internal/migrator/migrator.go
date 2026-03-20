@@ -20,9 +20,14 @@ func NewMigrator(db *sql.DB, migrationsPath string) *Migrator {
 }
 
 func (m *Migrator) Up() error {
+	if err := goose.SetDialect("postgres"); err != nil {
+		log.Print("custom_err set migration dialect: ", err)
+		return err
+	}
+
 	err := goose.Up(m.db, m.migrationsPath)
 	if err != nil {
-		log.Print("err migration up: ", err)
+		log.Print("custom_err migration up: ", err)
 		return err
 	}
 
