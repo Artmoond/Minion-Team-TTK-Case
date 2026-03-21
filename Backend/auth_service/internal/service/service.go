@@ -8,4 +8,5 @@ import (
 
 type Service interface {
 	CreateUser(ctx context.Context, req *models.CreateUserRequest) (*models.CreateUserResponse, error)
+	LoginService(ctx context.Context, req *models.LoginRequest) (*models.LoginResponse, error)
 }

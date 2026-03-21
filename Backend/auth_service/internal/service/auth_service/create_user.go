@@ -11,6 +11,8 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+const defaultRoleName = "Пользователь"
+
 func (s *authService) CreateUser(ctx context.Context, req *models.CreateUserRequest) (*models.CreateUserResponse, error) {
 
 	err := validator.Validate.Struct(req)
@@ -25,20 +27,22 @@ func (s *authService) CreateUser(ctx context.Context, req *models.CreateUserRequ
 		return nil, custom_err.ErrCreateUser
 	}
 
+	assignedRoles := []string{defaultRoleName}
+
 	res, err := s.repo.CreateUser(ctx, &repoModels.CreateUserRequest{
 		Login:      req.Login,
 		Password:   hashPasswords,
 		FirstName:  req.FirstName,
 		LastName:   req.LastName,
 		MiddleName: req.MiddleName,
-		Role:       "Пользователь",
+		Roles:      assignedRoles,
 	})
 
 	if err != nil {
 		return nil, err
 	}
 
-	token, err := s.token.GenerateToken(res.ID, res.Role)
+	token, err := s.token.GenerateToken(res.ID, assignedRoles)
 	if err != nil {
 		return nil, err
 	}

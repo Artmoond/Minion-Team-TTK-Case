@@ -8,4 +8,5 @@ import (
 
 type Repository interface {
 	CreateUser(ctx context.Context, user *models.CreateUserRequest) (*models.CreateUserResponse, error)
+	FindByName(ctx context.Context, login string) (*models.FindByNameResponse, error)
 }

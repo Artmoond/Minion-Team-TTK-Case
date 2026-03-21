@@ -3,7 +3,7 @@ package token
 import "time"
 
 type TokenService interface {
-	GenerateToken(userId int64, role string) (string, error)
+	GenerateToken(userId int64, roles []string) (string, error)
 }
 type tokenService struct {
 	secret string

@@ -11,3 +11,12 @@ type CreateUserRequest struct {
 type CreateUserResponse struct {
 	Token string `json:"token"`
 }
+
+type LoginRequest struct {
+	Login    string `json:"login" validate:"required"`
+	Password string `json:"password" validate:"required"`
+}
+
+type LoginResponse struct {
+	Token string `json:"token"`
+}

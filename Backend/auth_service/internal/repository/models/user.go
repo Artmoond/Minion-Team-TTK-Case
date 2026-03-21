@@ -8,7 +8,6 @@ type UserModel struct {
 	FirstName  string    `json:"first_name" db:"first_name"`
 	LastName   string    `json:"last_name" db:"last_name"`
 	MiddleName string    `json:"middle_name" db:"middle_name"`
-	Role       string    `json:"role" db:"role"`
 	Date       time.Time `json:"date" db:"date"`
 }
 
@@ -18,10 +17,17 @@ type CreateUserRequest struct {
 	FirstName  string `json:"first_name" db:"first_name"`
 	LastName   string `json:"last_name" db:"last_name"`
 	MiddleName string `json:"middle_name" db:"middle_name"`
-	Role       string `json:"role" db:"role"`
+	Roles      []string
 }
 
 type CreateUserResponse struct {
-	ID   int64  `json:"id"`
-	Role string `json:"role"`
+	ID    int64    `json:"id"`
+	Roles []string `json:"roles"`
+}
+
+type FindByNameResponse struct {
+	ID       int64    `json:"id"`
+	Login    string   `json:"login"`
+	Password []byte   `json:"password"`
+	Roles    []string `json:"roles"`
 }

@@ -8,10 +8,10 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 )
 
-func (t *tokenService) GenerateToken(userId int64, role string) (string, error) {
+func (t *tokenService) GenerateToken(userId int64, roles []string) (string, error) {
 	claims := jwt.MapClaims{
 		"user_id": userId,
-		"role":    role,
+		"roles":   roles,
 		"exp":     time.Now().Add(t.ttl).Unix(),
 	}
 

@@ -61,6 +61,7 @@ func main() {
 	router := gin.Default()
 	authGroup := router.Group("/api/v1/auth")
 	authGroup.POST("/register", authHandlers.CreateUser)
+	authGroup.POST("/login", authHandlers.LoginUser)
 
 	log.Println("starting auth server on :3030")
 
