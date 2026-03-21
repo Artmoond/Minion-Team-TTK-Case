@@ -12,3 +12,4 @@ var ErrEmptyToken = errors.New("Error token is empty ")
 var ErrNilSecret = errors.New("Error while getting secret ")
 
 var ErrNotHaveRightRole = errors.New("Error not have right role ")
+var ErrInvalidArguments = errors.New("Error invalid arguments ")

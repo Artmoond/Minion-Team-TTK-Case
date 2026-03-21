@@ -24,3 +24,21 @@ func ToServiceFromREPO(req []repoModels.User) []serviceModels.User {
 
 	return res
 }
+
+func ToRepoFromService(req *serviceModels.UpdateUserRoleReq) *repoModels.UpdateUserRoleReq {
+	res := repoModels.UpdateUserRoleReq{
+		ID:  req.ID,
+		Rol: make([]repoModels.Roles, 0, len(req.Rol)),
+	}
+
+	for _, v := range req.Rol {
+		r := repoModels.Roles{
+			Role:     v.Role,
+			IsAccept: v.IsAccept,
+		}
+
+		res.Rol = append(res.Rol, r)
+	}
+
+	return &res
+}

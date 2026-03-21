@@ -19,6 +19,7 @@ const (
 	middleNameColumn   = "middle_name"
 	roleNameColumn     = "rolename"
 	dateColumn         = "date"
+	deletedColumn      = "deleted_at"
 )
 
 type Postgres struct {

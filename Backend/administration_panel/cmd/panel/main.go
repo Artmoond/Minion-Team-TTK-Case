@@ -45,6 +45,8 @@ func main() {
 	router := gin.Default()
 	adminGroup := router.Group("/api/v1/admin")
 	adminGroup.GET("/users/all", panelHandlers.GetAllUsers)
+	adminGroup.DELETE("/users/:id", panelHandlers.DeleteUser)
+	adminGroup.PUT("/users/roles", panelHandlers.UpdateUserRole)
 
 	log.Println("starting administration panel on :3031")
 

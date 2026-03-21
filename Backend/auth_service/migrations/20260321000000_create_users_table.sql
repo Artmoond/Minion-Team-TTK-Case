@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS users (
     last_name TEXT NOT NULL,
     middle_name TEXT NOT NULL,
     role TEXT NOT NULL,
+    deleted_at TIMESTAMP NULL,
     date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 

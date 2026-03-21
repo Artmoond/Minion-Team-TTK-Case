@@ -2,7 +2,6 @@ package panel
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/Artmoond/Minion-Team-TTK-Case/Backend/administration_panel/internal/entity/custom_err"
 	"github.com/Artmoond/Minion-Team-TTK-Case/Backend/administration_panel/internal/entity/models"
@@ -27,8 +26,6 @@ func (s *Panel) DeleteUser(ctx context.Context, req *models.DeleteUserRequest) e
 			isAdmin = true
 			break
 		}
-
-		fmt.Println(v)
 	}
 
 	if !isAdmin {
