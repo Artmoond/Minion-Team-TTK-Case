@@ -46,8 +46,9 @@ func main() {
 	adminGroup := router.Group("/api/v1/admin")
 	adminGroup.GET("/users/all", panelHandlers.GetAllUsers)
 	adminGroup.DELETE("/users/:id", panelHandlers.DeleteUser)
-	adminGroup.PUT("/users/roles", panelHandlers.UpdateUserRole)
-
+	adminGroup.PUT("/users/change/roles", panelHandlers.UpdateUserRole)
+	adminGroup.PATCH("/users/change/password", panelHandlers.UpdatePassword)
+	
 	log.Println("starting administration panel on :3031")
 
 	if err = router.Run(":3031"); err != nil {

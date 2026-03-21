@@ -1,16 +1,15 @@
-package repository
+package postgres
 
 import (
 	"context"
 	"log"
 
-	"github.com/Artmoond/Minion-Team-TTK-Case/internal/entity/custom_err"
-	"github.com/Artmoond/Minion-Team-TTK-Case/internal/repository/postgres"
+	"github.com/Artmoond/Minion-Team-TTK-Case/Backend/administration_panel/internal/entity/custom_err"
 	sqr "github.com/Masterminds/squirrel"
 )
 
-func (p *postgres.postgres) UpdatePassword(ctx context.Context, id string, newPassword string) error {
-	builder := sqr.Update(postgres.tableName).Where(sqr.Eq{postgres.idColumn: id}).Set(postgres.passwordColumn, newPassword).PlaceholderFormat(sqr.Dollar)
+func (p *Postgres) UpdatePassword(ctx context.Context, id int64, newPassword []byte) error {
+	builder := sqr.Update(tableName).Where(sqr.Eq{idColumn: id}).Set(passwordColumn, newPassword).PlaceholderFormat(sqr.Dollar)
 	query, args, err := builder.ToSql()
 	if err != nil {
 		log.Printf("Error while building query: %v, %v", query, err)

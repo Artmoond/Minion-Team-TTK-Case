@@ -33,3 +33,9 @@ type Roles struct {
 	Role     string `json:"role" db:"role"`
 	IsAccept bool   `json:"isAccepted" db:"is_accepted"`
 }
+
+type ChangePasswordReq struct {
+	Token    string `json:"token" validate:"required"`
+	ID       int64  `json:"id" db:"id" validate:"required"`
+	Password string `json:"password" db:"password" validate:"required"`
+}
