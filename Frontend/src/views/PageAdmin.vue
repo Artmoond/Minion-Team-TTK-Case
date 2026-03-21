@@ -1,6 +1,11 @@
 <script>
+import Button from "@/components/Button.vue";
+
 export default {
     name: 'PageAdmin',
+    components: {
+        Button
+    },
     data() {
         return {
             users: [
@@ -30,7 +35,7 @@ export default {
 
 <template>
     <div class="container mx-auto p-4">
-        <h1 class="text-2xl font-bold mb-4">Главная страница - Пользователи</h1>
+        <h1 class="text-2xl font-bold mb-4">Управление пользователями</h1>
         <table class="min-w-full bg-white border border-gray-300">
             <thead>
                 <tr class="bg-gray-100">
@@ -48,9 +53,18 @@ export default {
                     <td class="py-2 px-4 border-b">{{ user.role }}</td>
                     <td class="py-2 px-4 border-b">{{ user.registrationDate }}</td>
                     <td class="py-2 px-4 border-b">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">
-                            Действия
-                        </button>
+                        <Button 
+                            text="Редактировать"
+                        />
+                        <Button 
+                            text="Изменить пароль"
+                        />
+                        <Button 
+                            text="Назначить роли"
+                        />
+                        <Button 
+                            text="Удалить"
+                        />
                     </td>
                 </tr>
             </tbody>
