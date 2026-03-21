@@ -1,13 +1,9 @@
 <script>
-import LogInPanel from "@/components/LogInPanel.vue";
-
-export default {
-    name: 'App',
-    components: {
-        LogInPanel,
-    }
-}
+import NavPanel from './components/NavPanel.vue'
 </script>
+
+
 <template>
-    <LogInPanel />
+    <NavPanel/>
+    <RouterView/>
 </template>
