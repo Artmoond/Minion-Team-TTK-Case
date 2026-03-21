@@ -2,6 +2,7 @@
 import LogInPanel from "@/components/LogInPanel.vue";
 
 export default {
+    name: 'PageLogin',
     components: {
         LogInPanel,
     }

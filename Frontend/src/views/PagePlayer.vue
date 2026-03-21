@@ -1,12 +1,12 @@
 <template>
     <div>
-        <h1>Главная страница</h1>
-        <p>Страница для плеера.</p>
+        <h1>Раздел ведущего</h1>
+        <p>Страница для ведущего.</p>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'PagePlayer'
+    name: 'PageHost'
 }
 </script>
