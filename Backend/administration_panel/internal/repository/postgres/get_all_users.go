@@ -11,8 +11,18 @@ import (
 	sqr "github.com/Masterminds/squirrel"
 )
 
-func (p *Postgres) GetAllUsers(ctx context.Context) ([]serviceModels.User, error) {
+func (p *Postgres) GetAllUsers(ctx context.Context, column string, isASC bool) ([]serviceModels.User, error) {
 	res := make([]models.User, 0)
+
+	sorted := "ASC"
+
+	if len(column) == 0 {
+		column = "id"
+	}
+
+	if !isASC {
+		sorted = "DESC"
+	}
 
 	builder := sqr.Select(
 		"u.id",
@@ -33,7 +43,7 @@ func (p *Postgres) GetAllUsers(ctx context.Context) ([]serviceModels.User, error
 			"u.middle_name",
 			"u.date",
 		).
-		OrderBy("u.id ASC").
+		OrderBy("u." + column + " " + sorted).
 		PlaceholderFormat(sqr.Dollar)
 
 	query, args, err := builder.ToSql()

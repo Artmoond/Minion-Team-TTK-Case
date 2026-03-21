@@ -7,5 +7,5 @@ import (
 )
 
 type Repository interface {
-	GetAllUsers(ctx context.Context) ([]serviceModels.User, error)
+	GetAllUsers(ctx context.Context, column string, isASC bool) ([]serviceModels.User, error)
 }

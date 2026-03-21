@@ -7,10 +7,13 @@ import (
 	"strings"
 
 	"github.com/Artmoond/Minion-Team-TTK-Case/Backend/administration_panel/internal/entity/custom_err"
+	"github.com/Artmoond/Minion-Team-TTK-Case/Backend/administration_panel/internal/entity/models"
 	"github.com/gin-gonic/gin"
 )
 
 func (h *handlers) GetAllUsers(c *gin.Context) {
+	var req *models.GetAllUsersRequest
+
 	authHeader := c.GetHeader("Authorization")
 
 	if len(authHeader) == 0 {
@@ -27,7 +30,14 @@ func (h *handlers) GetAllUsers(c *gin.Context) {
 	tokenString := strings.TrimPrefix(authHeader, "Bearer ")
 	tokenString = strings.TrimSpace(tokenString)
 
-	resp, err := h.service.GetAllUsers(c.Request.Context(), tokenString)
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	req.Token = tokenString
+
+	resp, err := h.service.GetAllUsers(c.Request.Context(), req)
 	if err != nil {
 		switch {
 		case errors.Is(err, custom_err.ErrNotHaveRightRole):

@@ -12,3 +12,9 @@ type User struct {
 	Roles      []string  `json:"roles" db:"roles"`
 	Date       time.Time `json:"date" db:"date"`
 }
+
+type GetAllUsersRequest struct {
+	Token  string `json:"token"`
+	Column string `json:"column"`
+	IsASC  bool   `json:"is_asc"`
+}

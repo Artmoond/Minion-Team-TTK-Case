@@ -7,5 +7,5 @@ import (
 )
 
 type PanelService interface {
-	GetAllUsers(ctx context.Context, token string) ([]models.User, error)
+	GetAllUsers(ctx context.Context, req *models.GetAllUsersRequest) ([]models.User, error)
 }

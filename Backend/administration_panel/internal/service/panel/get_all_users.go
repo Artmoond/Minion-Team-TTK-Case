@@ -2,7 +2,6 @@ package panel
 
 import (
 	"context"
-	"fmt"
 	"log"
 
 	"github.com/Artmoond/Minion-Team-TTK-Case/Backend/administration_panel/internal/entity/custom_err"
@@ -11,13 +10,13 @@ import (
 
 const RoleAdmin = "Администратор"
 
-func (s *Panel) GetAllUsers(ctx context.Context, tokenString string) ([]models.User, error) {
-	if len(tokenString) == 0 {
-		log.Println("err token is empty: ", tokenString)
+func (s *Panel) GetAllUsers(ctx context.Context, req *models.GetAllUsersRequest) ([]models.User, error) {
+	if len(req.Token) == 0 {
+		log.Println("err token is empty: ", req.Token)
 		return nil, custom_err.ErrEmptyToken
 	}
 
-	claims, err := s.token.GetClaims(tokenString)
+	claims, err := s.token.GetClaims(req.Token)
 	if err != nil {
 		return nil, err
 	}
@@ -30,8 +29,6 @@ func (s *Panel) GetAllUsers(ctx context.Context, tokenString string) ([]models.U
 			break
 		}
 
-		fmt.Println(v)
-
 		isAdmin = false
 	}
 
@@ -40,7 +37,7 @@ func (s *Panel) GetAllUsers(ctx context.Context, tokenString string) ([]models.U
 		return nil, custom_err.ErrNotHaveRightRole
 	}
 
-	resp, err := s.repo.GetAllUsers(ctx)
+	resp, err := s.repo.GetAllUsers(ctx, req.Column, req.IsASC)
 	if err != nil {
 		return nil, err
 	}
