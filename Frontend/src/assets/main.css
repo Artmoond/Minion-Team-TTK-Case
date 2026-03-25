@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+:root {
+    --primary: #007bff;
+    --info: #00bfff;
+    --warning: #ffc600;
+    --danger: #ff0000;
+    --light: #ffffff;
+    --gray: #999999;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}

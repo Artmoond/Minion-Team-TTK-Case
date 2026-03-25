@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аудиоплеер - ТТК Кавказ</title>
+
+    <!-- Локальный Plyr CSS -->
+    <!-- <link rel="stylesheet" href="plyr/src/sass/plyr.scss"> Чёрт его знает как достать css айлы вместо scss-->
+
+    <!-- Кастомные стили -->
+    <link rel="stylesheet" href="css/player.css">
+</head>
+<body>
+<div class="player-container">
+    <div class="player-card">
+        <h1>🎵 Радио ТТК Кавказ</h1>
+
+        <!-- Аудиоплеер Plyr -->
+        <audio id="audio-player" class="plyr" controls crossorigin>
+            <source src="/stream/StartAudio" type="audio/mpeg">
+            <source src="/stream/audio" type="audio/wav">
+            Ваш браузер не поддерживает аудио
+        </audio>
+
+        <div class="info">
+            <p id="status">🎧 Потоковое радио</p>
+            <p>📻 Форматы: MP3, WAV, OGG</p>
+            <p>⚡ Управление: пробел (play/pause), ↑/↓ (громкость)</p>
+        </div>
+    </div>
+</div>
+
+<!-- Локальный Plyr JS (с полифиллами) -->
+<script src="/plyr/src/js/plyr.js"></script>
+
+<!-- Кастомная логика -->
+<script src="/js/player.js"></script>
+</body>
+</html>
